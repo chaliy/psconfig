@@ -34,8 +34,9 @@ And you are ready to go.
 FAQ
 ===
 
-Q: Is protected setting is really protected?
-A: PsConfig uses Data Protection API (DPAPI) under user scope to protect values. This means that value is protected from other people, but not form you or other program that runs on your behalf.
+Q: Is protected settings are really protected?
+
+A: PsConfig uses Data Protection API (DPAPI) under user scope to protect values. This means that value is protected from other people, but not from you or other program that runs on your behalf.
 
 
 Credits
