@@ -13,9 +13,9 @@ test-spec {
     "When setting value by name"
     $Path = [IO.Path]::GetTempFileName()
     set-setting User "user256" -Path $Path -Verbose
-    $result = get-setting User -Path $Path 
+    $Result = get-setting User -Path $Path 
     
-    $result | should be_equal "user256"
+    $Result | should be_equal "user256"
 }
 
 test-spec {    
@@ -32,4 +32,14 @@ test-spec {
     $User | should be_equal user256
     $User2 | should be_equal user257
     $User3 | should be_equal user258
+}
+
+test-spec {    
+    "When setting encripted value"
+    
+    $Path = [IO.Path]::GetTempFileName()
+    set-setting User "user256" -Encripted -Path $Path -Verbose    
+    $Result = get-setting User -Encripted -Path $Path;
+        
+    $Result | should be_equal user256
 }
