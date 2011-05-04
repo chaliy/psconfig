@@ -35,6 +35,16 @@ test-spec {
 }
 
 test-spec {    
+    "When reading non existing encripted value"
+    
+    $Path = [IO.Path]::GetTempFileName()
+    Set-Content $Path ""
+    $Result = get-setting User12 -Encripted -Path $Path;
+        
+    $Result | should be_null
+}
+
+test-spec {    
     "When setting encripted value"
     
     $Path = [IO.Path]::GetTempFileName()

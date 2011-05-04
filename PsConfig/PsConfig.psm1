@@ -10,8 +10,11 @@ Param(
     if (Test-Path $Path){
         Write-Verbose "Read settings from $Path"
         $settings = ConvertFrom-StringData ([IO.File]::ReadAllText($Path))        
-        if ($Encripted){    
-            DecriptValue $settings[$Name]
+        if ($Encripted){                
+            $value = [string]$settings[$Name]
+            if ($value -ne ""){
+                DecriptValue $settings[$Name]
+            }
         } else {
             $settings[$Name]
         }               
