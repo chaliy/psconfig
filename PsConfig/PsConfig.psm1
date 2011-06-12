@@ -5,9 +5,9 @@ Param(
     [String]$Name,
     [Switch]$Encripted,
     $Path = (Join-Path $HOME .Settings)
-)
-    $Path = Resolve-Path $Path    
+)    
     if (Test-Path $Path){
+        $Path = Resolve-Path $Path
         Write-Verbose "Read settings from $Path"
         $settings = ConvertFrom-StringData ([IO.File]::ReadAllText($Path))        
         if ($Encripted){                
@@ -69,10 +69,10 @@ Param(
     $Value,
     [Switch]$Encripted,
     $Path = (Join-Path $HOME .Settings)
-)
-    $Path = Resolve-Path $Path
+)    
     $settings = @{}
     if (Test-Path $Path){
+        $Path = Resolve-Path $Path
         $settings = ConvertFrom-StringData ([IO.File]::ReadAllText($Path))
     }    
     if ($Encripted){    
