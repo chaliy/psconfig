@@ -11,9 +11,11 @@ Param(
         Write-Verbose "Read settings from $Path"
         $settings = ConvertFrom-StringData ([IO.File]::ReadAllText($Path))        
         if ($Encripted){                
-            $value = [string]$settings[$Name]
+            $value = [string]$settings[$Name]            
             if ($value -ne ""){
-                DecriptValue $settings[$Name]
+                DecriptValue $value
+            } else {
+                ""
             }
         } else {
             [string]$settings[$Name]
