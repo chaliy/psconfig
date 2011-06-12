@@ -16,10 +16,11 @@ Param(
                 DecriptValue $settings[$Name]
             }
         } else {
-            $settings[$Name]
+            [string]$settings[$Name]
         }               
     } else {
         Write-Verbose "Path $Path was not found."
+        ""
     }
 <#
 .Synopsis
