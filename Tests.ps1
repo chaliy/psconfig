@@ -41,7 +41,7 @@ test-spec {
     Set-Content $Path ""
     $Result = get-setting User12 -Encripted -Path $Path;
         
-    $Result | should be_null
+    $Result | should be_equal ""
 }
 
 test-spec {    

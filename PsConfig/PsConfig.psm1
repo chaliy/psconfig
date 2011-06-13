@@ -4,7 +4,8 @@ Param(
     [Parameter(ValueFromPipeline=$true, ValueFromPipelineByPropertyName=$true, Mandatory=$true, Position=0)]
     [String]$Name,
     [Switch]$Encripted,
-    $Path = (Join-Path $HOME .Settings)
+    $Path = (Join-Path $HOME .Settings),
+    [String]$Prompt
 )    
     if (Test-Path $Path){
         $Path = Resolve-Path $Path
@@ -13,17 +14,21 @@ Param(
         if ($Encripted){                
             $value = [string]$settings[$Name]            
             if ($value -ne ""){
-                DecriptValue $value
-            } else {
-                ""
+                $value = DecriptValue $value
             }
         } else {
-            [string]$settings[$Name]
+            $value = $settings[$Name]
         }               
     } else {
         Write-Verbose "Path $Path was not found."
-        ""
     }
+    
+    if ($Prompt -ne "" -and ($value -eq "" -or $value -eq $null)){                
+        $value = Read-Host $Prompt
+        Set-Setting $Name $value -Encripted:$Encripted -Path:$Path
+    }
+    
+    [string]$value
 <#
 .Synopsis
     Gets configuration setting from user folder or elsewhere.
